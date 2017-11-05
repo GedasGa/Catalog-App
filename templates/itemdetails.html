@@ -1,0 +1,41 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="row padding-top padding-bottom">
+  <div class="col-md-1"></div>
+  <div class="col-md-10 padding-none"></div>
+  <div class="col-md-1"></div>
+</div>
+
+<div class = 'flash'>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>
+      {% for message in messages %}
+          <li> <strong> {{ message }} </strong> </li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+</div>
+
+<div class="row">
+  <section id="showItemDetails">
+    <div class="col-md-12">
+      <h4 class="lead">{{ item.title }}</h4>
+      <div class="list-group">
+          <p class="list-group-item">{{ item.description }}</p>
+      </div>
+      <h6>(Created by: {{ item.user.name }})</h6>
+    </div>
+  </section>
+  <section id="newItem">
+    <div class="col-md-3">
+        <a href="{{url_for('editCatalogItem', catalog_item_title=item.title)}}" class="btn btn-warning" role="button">Edit</a>
+        <a href="{{url_for('deleteCatalogItem', catalog_item_title=item.title)}}" class="btn btn-danger" role="button">Delete</a>
+    </div>
+  </section>
+</div>
+
+{% endblock %}
