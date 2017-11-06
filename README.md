@@ -62,18 +62,12 @@ The `/templates` directory contains the following files, written in HTML and the
   `$ vagrant ssh`
 - Change directory to /vagrant and look around with ls.
 
+### Starting up the Application:
 
+- In order to, start this application you will need to create the database base first. You can do this by typing this command into your terminal:
+  `python database_setup.py`
 
+- At this point your database does not have any records. You can populate the database using this command:
+  `python populate_db.py`
 
-
-How will I complete this project?
-This project is connected to the Full Stack Foundations and Authentication and Authorization courses, but depending on your background knowledge you may not need the entirety of both courses to complete this project. Here's what you should do:
-
-Install Vagrant and VirtualBox
-Clone the fullstack-nanodegree-vm
-Launch the Vagrant VM (vagrant up)
-Write your Flask application locally in the vagrant/catalog directory (which will automatically be synced to /vagrant/catalog within the VM).
-Run your application within the VM (python /vagrant/catalog/application.py)
-Access and test your application by visiting http://localhost:8000 locally
-Get started with this helpful guide.
-You can find the link to the fullstack-nanodegree-vm here.
+- Now you are ready to start the Application. Just type: `python project.py`

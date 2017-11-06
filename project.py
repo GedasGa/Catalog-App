@@ -20,6 +20,8 @@ import os
 import sys
 import datetime
 
+from functools import wraps
+
 app = Flask(__name__)
 
 CLIENT_ID = json.loads(
@@ -33,6 +35,16 @@ Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
+
+
+# Flask Login Decorator
+def login_required(f):
+    @wraps(f)
+    def decorated_fuction(*args, **kwargs):
+        if 'username' not in login_session:
+            return redirect('/login')
+        return f(*args, **kwargs)
+    return decorated_fuction
 
 
 # Create anti-forgery state token
@@ -264,7 +276,7 @@ def showItem(category_name, catalog_item_title):
     item = session.query(CatalogItem).filter_by(title=catalog_item_title).one()
     creator = getUserInfo(item.user_id)
     if ('username' not in login_session or
-        creator.id !=login_session['user_id']):
+            creator.id != login_session['user_id']):
         return render_template('itemdetailspublic.html', item=item,
                                category=category_name, categories=categories,
                                creator=creator)
@@ -276,10 +288,9 @@ def showItem(category_name, catalog_item_title):
 
 # Create a new catalog item
 @app.route('/catalog/items/new/', methods=['GET', 'POST'])
+@login_required
 def newCatalogItem():
     categories = session.query(Category).order_by(asc(Category.name))
-    if 'username' not in login_session:
-        return redirect('/login')
     if request.method == 'POST':
         category = session.query(Category).filter_by(
             name=request.form['category']).one()
@@ -301,10 +312,9 @@ def newCatalogItem():
 # Edit a catalog item
 @app.route('/catalog/<string:catalog_item_title>/edit',
            methods=['GET', 'POST'])
+@login_required
 def editCatalogItem(catalog_item_title):
     categories = session.query(Category).order_by(asc(Category.name))
-    if 'username' not in login_session:
-        return redirect('/login')
     editedItem = session.query(CatalogItem).filter_by(
         title=catalog_item_title).one()
     category = session.query(Category).filter_by(
@@ -335,9 +345,8 @@ def editCatalogItem(catalog_item_title):
 # Delete a catalog item
 @app.route('/catalog/<string:catalog_item_title>/delete',
            methods=['GET', 'POST'])
+@login_required
 def deleteCatalogItem(catalog_item_title):
-    if 'username' not in login_session:
-        return redirect('/login')
     itemToDelete = session.query(CatalogItem).filter_by(
         title=catalog_item_title).one()
     category = session.query(Category).filter_by(

@@ -31,12 +31,11 @@
           		<option value="{{category.name}}">{{category.name}}</option>
           	{% endfor %}
           </select>
-
 					<button type="submit" class="btn btn-success" id="submit" type="submit">
-					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Create</button>
-					<a href = '{{url_for('showCategories')}}'>
-						<button class="btn btn-danger">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Cancel</button>
+						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Create
+					</button>
+					<a href = '{{url_for('showCategories')}}' class="btn btn-danger">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Cancel
 					</a>
 				</div>
 			</form>
