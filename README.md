@@ -2,7 +2,7 @@
 
 **by Gedas Gardauskas**
 
-In this project, I have develop an application that provides a list of items within a variety of categories as well as provide a user registration and authentication system. Registered users have the ability to post, edit and delete their own items.
+In this project, I have developed an application that provides a list of items within a variety of categories as well as provide a user registration and authentication system. Registered users have the ability to post, edit and delete their own items.
 
 ## What it is and it does
 
