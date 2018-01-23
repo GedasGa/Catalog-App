@@ -6,7 +6,7 @@ In this project, I have developed an application that provides a list of items w
 
 ## What it is and it does
 
-It is a RESTful web application using the Python framework Flask along with  third-party OAuth authentication. More over, project implements a JSON endpoint that serves the same information as displayed in the HTML endpoints for an arbitrary item in the catalog.
+It is a RESTful web application using the Python framework Flask along with  third-party OAuth authentication. Moreover, project implements a JSON endpoint that serves the same information as displayed in the HTML endpoints for an arbitrary item in the catalog.
 
 ## Required Libraries and Dependencies
 
